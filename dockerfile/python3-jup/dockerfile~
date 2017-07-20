@@ -1,8 +1,16 @@
-FROM python:3.6-slim
+FROM python:3.4-slim
 
-# Install Jupyter
-RUN pip install jupyter
+RUN buildDeps=' \
+	build-essential \
+	libxml2-dev \
+	zlib1g-dev \
+	' \
+	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends
 
+## this command makes python3.4 worse
+# RUN apt-get install -y python3-cairo
+
+# pip install
 RUN pip --no-cache-dir install \
         Pillow \
         jupyter \
@@ -10,17 +18,11 @@ RUN pip --no-cache-dir install \
         numpy \
         pandas \
         scipy \
-        sklearn
+        sklearn \
+	igraph
 
-RUN buildDeps=' \
-	build-essential \
-	libxml2-dev \
-	zlib1g-dev
-	' \
-	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& apt-get purge -y --auto-remove $buildDeps \
-
+RUN rm -rf /var/lib/apt/lists/* \
+	&& apt-get purge -y --auto-remove $buildDeps
 
 # Jupyter has issues with being run directly:
 #   https://github.com/ipython/ipython/issues/7062

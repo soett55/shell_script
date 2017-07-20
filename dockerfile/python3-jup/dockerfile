@@ -1,5 +1,9 @@
 FROM python:3.6-slim
 
+ARG USER_ID
+ARG USER_NAME
+ARG PASSWD
+
 RUN buildDeps=' \
 	build-essential \
 	libxml2-dev \
@@ -29,8 +33,8 @@ RUN rm -rf /var/lib/apt/lists/* \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 # shared file user permission handling
-RUN useradd -u $USER_ID -o -m $USER_NAME -s /bin/bash \
-	printf "$PASSWD\n$PASSWD\n" | passwd $USER_NAME
+RUN useradd -u $USER_ID -o -m $USER_NAME -s /bin/bash
+RUN printf "$PASSWD\n$PASSWD\n" | passwd $USER_NAME
 
 # Jupyter has issues with being run directly:
 #   https://github.com/ipython/ipython/issues/7062

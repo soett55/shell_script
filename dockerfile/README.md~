@@ -13,18 +13,16 @@
 ##### https://packages.ubuntu.com/xenial/python3-cairo
 ##### https://cairocffi.readthedocs.io/en/latest/
 
-#### * python modules
 ##### pillow, jupyter, matplotlib, numpy, pandas, scipy, sklearn, igraph, cairocffi
 
-#### * to build
-##### docker build -t python-jup:0.2 --build-arg USER_ID=1001 \
-##### 	--build-arg USER_NAME=user \
-##### 	--build-arg PASSWD=pass \
-##### 	.
-
-#### * to run
 ##### docker run -it --name python-jup -p 18888:8888 python-jup:0.1 /bin/bash
+
 ##### docker run -it --name python-jup -p 18888:8888 -v [/datapath]:/docker python-jup:0.1 /bin/bash
+
+##### docker build -t python-jup:0.2 --build-arg USER_ID=1001 \
+##### 	--build-arg USER_NAME=sspark \
+##### 	--build-arg PASSWD=123qwe \
+##### 	.
 
 # python + Theano
 #### * 환경 설정 에러 

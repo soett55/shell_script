@@ -46,4 +46,4 @@ COPY jupyter_notebook_config.py /home/$USER_NAME/.jupyter/
 # Jupyter
 EXPOSE 8888
 
-CMD ["source", "/run_jupyter.sh", "--allow-root"]
+CMD ["/run_jupyter.sh", "--allow-root"]

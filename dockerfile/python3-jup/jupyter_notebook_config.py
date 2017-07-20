@@ -59,7 +59,7 @@
 #c.NotebookApp.allow_origin_pat = ''
 
 ## Whether to allow the user to run the notebook as root.
-#c.NotebookApp.allow_root = False
+c.NotebookApp.allow_root = True
 
 ## DEPRECATED use base_url
 #c.NotebookApp.base_project_url = '/'
@@ -214,7 +214,7 @@ c.NotebookApp.open_browser = False
 #    from notebook.auth import passwd; passwd()
 #  
 #  The string should be of the form type:salt:hashed-password.
-#c.NotebookApp.password = ''
+c.NotebookApp.password = 'whatttt_confirmed'
 
 ## Forces users to use a password for the Notebook server. This is useful in a
 #  multi user environment, for instance when everybody in the LAN can access each

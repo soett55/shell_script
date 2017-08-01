@@ -28,12 +28,15 @@
 
 # pytorch + jupyter
 
-#### 1. official github에서 clone후 빌드로 최신 이미지 파일을 얻는다. https://github.com/pytorch/pytorchㅁ
+#### 1. official github에서 clone후 빌드로 최신 이미지 파일을 얻는다. https://github.com/pytorch/pytorch
+#### docker build -t pytorch:latest .
+
 #### 2. pytorch-jup안의 docker building을 한다.
 #### docker build -t pytorch-jup:0.1 --build-arg USER_ID=1001 \
 #### --build-arg USER_NAME=USERID \
-####--build-arg PASSWD=USERPASS \
+#### --build-arg PASSWD=USERPASS \
 #### .
+
 #### 3. how to run
 #### docker run -it -u USERNAME --name temp-pytorch -p 48888:8888 -v [outer]:[inner] pytorch-jup:0.1 bash
 

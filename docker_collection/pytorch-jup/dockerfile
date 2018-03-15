@@ -1,0 +1,23 @@
+FROM pytorch:latest
+
+ARG USER_ID
+ARG USER_NAME
+ARG PASSWD
+
+RUN pip --no-cache-dir install jupyter
+
+# shared file user permission handling
+RUN useradd -u $USER_ID -o -m $USER_NAME -s /bin/bash
+RUN printf "$PASSWD\n$PASSWD\n" | passwd $USER_NAME
+
+# Jupyter has issues with being run directly:
+#   https://github.com/ipython/ipython/issues/7062
+# We just add a little wrapper script.
+COPY run_jupyter.sh /
+COPY jupyter_notebook_config.py /root/.jupyter/
+COPY jupyter_notebook_config.py /home/$USER_NAME/.jupyter/
+
+# Jupyter
+EXPOSE 8888
+
+CMD ["/run_jupyter.sh"]

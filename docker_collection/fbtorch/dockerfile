@@ -1,0 +1,10 @@
+FROM bethgelab/jupyter-torch:cuda8.0-cudnn5
+
+# configure locales
+RUN export LC_ALL="en_US.UTF-8"
+RUN locale-gen en_US en_US.UTF-8
+RUN dpkg-reconfigure locales
+
+RUN cd /tmp &&	git clone https://github.com/facebook/fbtorch.git && ( cd /tmp/fbtorch && luarocks make rocks/fbtorch-scm-1.rockspec )
+
+RUN luarocks install torchx && luarocks install tds
